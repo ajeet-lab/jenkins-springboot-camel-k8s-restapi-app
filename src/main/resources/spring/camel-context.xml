@@ -18,8 +18,8 @@
             <log loggingLevel="INFO" message="sbck8s_route_one002 :: Fetched all users:- ${body}"/>
         </route>
         
-         <!--<route id="sbck8s_route_two">
-            <from uri="jetty:http://localhost:9090/api/v1/users/{id}?httpMethodRestrict=PUT"/>
+         <route id="sbck8s_route_two">
+            <from uri="jetty:http://0.0.0.0:9090/api/v1/users/{id}?httpMethodRestrict=PUT"/>
             <unmarshal ref="jsonUser"/>
             <log loggingLevel="INFO" message="sbck8s_route_two001 :: Users route is called:- ${date:now} ===> ${body}"/>
             <setHeader headerName="Content-Type"><simple>application/json</simple></setHeader>
@@ -34,6 +34,6 @@
             <setHeader headerName="Content-Type"><simple>application/json</simple></setHeader>
             <setBody><simple>{"name":"${body[name]}", "age":${body[age]}, "email":"${body[email]}"}</simple></setBody>
             <log loggingLevel="INFO" message="sbck8s_route_three002 :: Fetched all user :- ${body}"/>
-        </route>-->
+        </route>
     </camelContext>
 </beans>
