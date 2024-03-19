@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring-2.23.3.xsd">
+
+    <camelContext id="sbck8s" xmlns="http://camel.apache.org/schema/spring">
+    	<dataFormats>
+			<json id="jsonUser" library="Jackson" />
+		</dataFormats>
+    
+        <route id="sbck8s_route_one">
+            <from uri="jetty:http://0.0.0.0:9090/api/v1/users"/>
+            <log loggingLevel="INFO" message="sbck8s_route_one001 :: Users route is called:- ${date:now}"/>
+            <setHeader headerName="Content-Type"><simple>application/json</simple></setHeader>
+            <setBody><simple>[{"name":"ajeet", "age":29, "email":"ajeet@gmail.com"}, {"name":"ashish", "age":39, "email":"ashish@gmail.com"}]</simple></setBody>
+            <log loggingLevel="INFO" message="sbck8s_route_one002 :: Fetched all users:- ${body}"/>
+        </route>
+        
+         <!--<route id="sbck8s_route_two">
+            <from uri="jetty:http://localhost:9090/api/v1/users/{id}?httpMethodRestrict=PUT"/>
+            <unmarshal ref="jsonUser"/>
+            <log loggingLevel="INFO" message="sbck8s_route_two001 :: Users route is called:- ${date:now} ===> ${body}"/>
+            <setHeader headerName="Content-Type"><simple>application/json</simple></setHeader>
+            <setBody><simple>{"name":"${body[name]}", "age":${body[age]}, "email":"${body[email]}"}</simple></setBody>
+            <log loggingLevel="INFO" message="sbck8s_route_two002 :: Fetched all user :- ${body}"/>
+        </route>
+        
+         <route id="sbck8s_route_three">
+            <from uri="jetty:http://0.0.0.0:9090/api/v1/users?httpMethodRestrict=POST"/>
+             <unmarshal ref="jsonUser"/>
+            <log loggingLevel="INFO" message="sbck8s_route_three001 :: Users route is called:- ${date:now} ===> ${header.id}"/>
+            <setHeader headerName="Content-Type"><simple>application/json</simple></setHeader>
+            <setBody><simple>{"name":"${body[name]}", "age":${body[age]}, "email":"${body[email]}"}</simple></setBody>
+            <log loggingLevel="INFO" message="sbck8s_route_three002 :: Fetched all user :- ${body}"/>
+        </route>-->
+    </camelContext>
+</beans>

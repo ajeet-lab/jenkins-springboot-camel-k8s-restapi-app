@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: springboot-camel-k8s-restapi-app
+spec:
+  selector:
+    matchLabels:
+      app: springboot-camel-k8s-restapi
+  replicas: 2 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: springboot-camel-k8s-restapi
+    spec:
+      containers:
+        - name: springboot-camel-k8s-restapi
+          image: ajeet9415/springboot-camel-app:02 # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080 # The port that the container is running on in the clustertes
