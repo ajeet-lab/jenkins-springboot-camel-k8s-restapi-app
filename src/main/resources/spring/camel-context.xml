@@ -11,7 +11,7 @@
 		</dataFormats>
     
         <route id="sbck8s_route_one">
-            <from uri="jetty:http://0.0.0.0:9090/api/v1/users"/>
+            <from uri="jetty:http://0.0.0.0:9090/api/v1/users?httpMethodRestrict=GET"/>
             <log loggingLevel="INFO" message="sbck8s_route_one001 :: Users route is called:- ${date:now}"/>
             <setHeader headerName="Content-Type"><simple>application/json</simple></setHeader>
             <setBody><simple>[{"name":"ajeet", "age":29, "email":"ajeet@gmail.com"}, {"name":"ashish", "age":39, "email":"ashish@gmail.com"}]</simple></setBody>
